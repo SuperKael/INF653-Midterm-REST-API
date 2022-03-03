@@ -5,7 +5,13 @@
 
         public static function connect() {
             if (is_null(self::$connection)) {
-                self::$connection = new PDO(getenv("JAWSDB_URL"));
+                $url = getenv('JAWSDB_URL');
+                $dbparts = parse_url(getenv("JAWSDB_URL"));
+                $hostname = $dbparts['host'];
+                $database = substr($dbparts['path'], 1);
+                $username = $dbparts['user'];
+                $password = $dbparts['pass'];
+                self::$connection = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
             }
             return self::$connection;
         }
