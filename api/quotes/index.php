@@ -5,7 +5,7 @@
     include_once '../../config/database.php';
 
     try {
-        $db = Database.connect();
+        $db = Database::connect();
     } catch (PDOException $e) {
         error_log($e);
         http_response_code(500);
