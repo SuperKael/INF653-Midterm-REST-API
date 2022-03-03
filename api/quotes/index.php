@@ -17,7 +17,7 @@
 
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-            $params = array_filter([ "id", "authorId", "categoryId" ], function($key) { return isset($_GET[$key]); });
+            $params = array_values(array_filter([ "id", "authorId", "categoryId" ], function($key) { return isset($_GET[$key]); }));
             $query = 'SELECT id, quote, authorId, categoryId FROM quotes';
             if (count($params) > 0) {
                 $query .= ' WHERE ' . join(' AND ', array_map(function($key) { return $key . ' = ?'; }, $params));
