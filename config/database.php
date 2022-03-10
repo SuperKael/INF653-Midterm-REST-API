@@ -12,6 +12,7 @@
                 $username = $dbparts['user'];
                 $password = $dbparts['pass'];
                 self::$connection = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
             return self::$connection;
         }
