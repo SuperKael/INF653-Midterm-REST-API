@@ -124,7 +124,7 @@
                     'categoryId' => $input['categoryId']
                 ]);
             } else {
-                http_response_code(400);
+                http_response_code(404);
                 echo json_encode(
                     array('message' => "No Quotes Found")
                 );
@@ -155,7 +155,7 @@
                     'id' => $input['id']
                 ]);
             } else {
-                http_response_code(400);
+                http_response_code(404);
                 echo json_encode(
                     array('message' => "No Quotes Found")
                 );
