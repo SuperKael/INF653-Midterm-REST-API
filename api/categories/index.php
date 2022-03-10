@@ -38,7 +38,7 @@
                     echo json_encode(!isset($_GET['id']) ? $rows : $rows[0]);
                 }
             } else {
-                http_response_code(404);
+                http_response_code(200);
                 echo json_encode(
                     array('message' => "categoryId Not Found")
                 );
@@ -48,7 +48,7 @@
             $acceptParams = [ 'category' ];
             foreach ($acceptParams as $param) {
                 if (!isset($input[$param])) {
-                    http_response_code(400);
+                    http_response_code(200);
                     echo json_encode(
                         array('message' => "Missing Required Parameters")
                     );
@@ -60,7 +60,7 @@
             try {
                 $stmt->execute(array_filter($input, function($key) use($acceptParams) { return in_array($key, $acceptParams); }, ARRAY_FILTER_USE_KEY));
             } catch (PDOException $ex) {
-                http_response_code(400);
+                http_response_code(200);
                 throw $ex;
             }
             http_response_code(201);
@@ -73,7 +73,7 @@
             $acceptParams = [ 'id', 'category' ];
             foreach ($acceptParams as $param) {
                 if (!isset($input[$param])) {
-                    http_response_code(400);
+                    http_response_code(200);
                     echo json_encode(
                         array('message' => "Missing Required Parameters")
                     );
@@ -85,7 +85,7 @@
             try {
                 $stmt->execute(array_filter($input, function($key) use($acceptParams) { return in_array($key, $acceptParams); }, ARRAY_FILTER_USE_KEY));
             } catch (PDOException $ex) {
-                http_response_code(400);
+                http_response_code(200);
                 throw $ex;
             }
             if ($stmt->rowCount() > 0) {
@@ -95,7 +95,7 @@
                     'category' => $input['category']
                 ]);
             } else {
-                http_response_code(404);
+                http_response_code(200);
                 echo json_encode(
                     array('message' => "No Categories Found")
                 );
@@ -105,7 +105,7 @@
             $acceptParams = [ 'id' ];
             foreach ($acceptParams as $param) {
                 if (!isset($input[$param])) {
-                    http_response_code(400);
+                    http_response_code(200);
                     echo json_encode(
                         array('message' => "Missing Required Parameters")
                     );
@@ -117,7 +117,7 @@
             try {
                 $stmt->execute(array_filter($input, function($key) use($acceptParams) { return in_array($key, $acceptParams); }, ARRAY_FILTER_USE_KEY));
             } catch (PDOException $ex) {
-                http_response_code(400);
+                http_response_code(200);
                 $message = $ex->getMessage();
                 if (strpos($message, 'foreign key') !== false) {
                     echo json_encode(
@@ -134,7 +134,7 @@
                     'id' => $input['id']
                 ]);
             } else {
-                http_response_code(404);
+                http_response_code(200);
                 echo json_encode(
                     array('message' => "No Categories Found")
                 );
