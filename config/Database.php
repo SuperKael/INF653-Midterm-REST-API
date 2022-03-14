@@ -6,7 +6,7 @@
         public static function connect() {
             if (is_null(self::$connection)) {
                 $url = getenv('JAWSDB_URL');
-                $dbparts = parse_url(getenv("JAWSDB_URL"));
+                $dbparts = parse_url($url);
                 $hostname = $dbparts['host'];
                 $database = substr($dbparts['path'], 1);
                 $username = $dbparts['user'];
